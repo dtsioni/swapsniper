@@ -1,0 +1,2 @@
+def PagesController < ApplicationController
+end
