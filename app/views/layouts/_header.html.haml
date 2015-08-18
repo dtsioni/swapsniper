@@ -1,4 +1,7 @@
 %nav.navbar.navbar-default
+  .navbar-header.navbar-left
+    = link_to root_path do
+      SWAPSNIPER
   .navbar-header.navbar-right
     -if signed_in?
       = link_to sign_out_path, method: "delete" do
