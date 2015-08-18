@@ -4,4 +4,7 @@
       = link_to sign_out_path, method: "delete" do
         %button.btn.btn-default
           Sign Out
-
+    -else
+      = link_to sign_in_path do
+        %button.btn.btn-default
+          Sign In
