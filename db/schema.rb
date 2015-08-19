@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819010349) do
+ActiveRecord::Schema.define(version: 20150819010947) do
 
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20150819010349) do
     t.string   "last_name"
     t.string   "campus"
     t.string   "building"
+    t.integer  "origin_id"
+    t.integer  "destination_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
