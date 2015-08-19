@@ -7,4 +7,6 @@
 
   = form.text_field :last_name, placeholder: "Last name", hide_label: true
 
+  = form.collection_select :gender, User::GENDERS, :to_s, :humanize
+
   = form.submit
