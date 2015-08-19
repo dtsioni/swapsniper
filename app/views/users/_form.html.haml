@@ -1,19 +1,15 @@
 = form_for @user do |form|
   .text-field.input
-    = form.label :email
-    = form.text_field :email, type: 'email'
+    = form.text_field :email, type: 'email', placeholder: "Email"
 
   .password-field
-    = form.label :password
-    = form.password_field :password
+    = form.password_field :password, placeholder: "Password"
 
   .text-field
-    = form.label :first_name
-    = form.text_field :first_name
+    = form.text_field :first_name, placeholder: "First name"
 
   .text-field
-    = form.label :last_name
-    = form.text_field :last_name
+    = form.text_field :last_name, placeholder: "Last name"
 
   .submit-field
     = form.submit
