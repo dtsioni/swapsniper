@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :gender
 end
