@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   belongs_to :destination
 
   validates_presence_of :first_name, :last_name, :gender
+
+  GENDERS = %w[male female]
 end
