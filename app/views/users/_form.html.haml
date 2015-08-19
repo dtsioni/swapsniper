@@ -1,15 +1,19 @@
-.text-field
-  = form.label :email
-  = form.text_field :email, type: 'email'
+= form_for @user do |form|
+  .text-field.input
+    = form.label :email
+    = form.text_field :email, type: 'email'
 
-.password-field
-  = form.label :password
-  = form.password_field :password
+  .password-field
+    = form.label :password
+    = form.password_field :password
 
-.text-field
-  = form.label :first_name
-  = form.text_field :first_name
+  .text-field
+    = form.label :first_name
+    = form.text_field :first_name
 
-.text-field
-  = form.label :last_name
-  = form.text_field :last_name
+  .text-field
+    = form.label :last_name
+    = form.text_field :last_name
+
+  .submit-field
+    = form.submit
