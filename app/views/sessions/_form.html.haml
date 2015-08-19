@@ -1,0 +1,6 @@
+= bootstrap_form_for :session, url: session_path do |form|
+  = form.text_field :email, type: 'email', placeholder: "Email", hide_label: true
+
+  = form.password_field :password, placeholder: "Password", hide_label: true
+
+  = form.submit
