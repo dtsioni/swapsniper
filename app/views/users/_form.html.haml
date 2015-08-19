@@ -1,15 +1,10 @@
 = bootstrap_form_for(@user, label_errors: true) do |form|
-  .text-field.input
-    = form.text_field :email, type: 'email', placeholder: "Email"
+  = form.text_field :email, type: 'email', placeholder: "Email"
 
-  .password-field
-    = form.password_field :password, placeholder: "Password"
+  = form.password_field :password, placeholder: "Password"
 
-  .text-field
-    = form.text_field :first_name, placeholder: "First name"
+  = form.text_field :first_name, placeholder: "First name"
 
-  .text-field
-    = form.text_field :last_name, placeholder: "Last name"
+  = form.text_field :last_name, placeholder: "Last name"
 
-  .submit-field
-    = form.submit
+  = form.submit
