@@ -1,0 +1,2 @@
+class Destination < Location
+end
