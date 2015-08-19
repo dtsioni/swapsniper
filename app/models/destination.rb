@@ -1,3 +1,3 @@
 class Destination < Location
-  validates_presence_of :building, if: :campus
+  validates_presence_of :campus, if: :building
 end
