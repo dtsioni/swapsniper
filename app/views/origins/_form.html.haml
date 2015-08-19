@@ -1,0 +1,5 @@
+= bootstrap_form_for(@origin, label_errors: true) do |form|
+  = form.text_field :campus, placeholder: "Campus", hide_label: true
+  = form.text_field :building, placeholder: "Building", hide_label: true
+
+  = form.submit
