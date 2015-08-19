@@ -1,15 +1,34 @@
-%nav.navbar.navbar-default
-  .navbar-header.navbar-left
-    = link_to root_path do
-      SWAPSNIPER
-  .navbar-header.navbar-right
-    -if signed_in?
-      = link_to sign_out_path, method: "delete" do
-        %button.btn.btn-default
-          Sign Out
-    -else
-      = link_to sign_in_path do
-        %button.btn.btn-default
-          Sign In
-      - if Clearance.configuration.allow_sign_up?
-        = link_to t(".sign_up"), sign_up_path
+%nav.navbar.navbar-default{role:"navigation"}
+  .navbar-header
+    %button.navbar-toggle{type:"button", "data-target"=>"#navbarCollapse", "data-toggle"=>"collapse"}
+      %span.sr-only
+        Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{href:"/"}
+      Swapsniper
+  -if signed_in?
+    #navbarCollapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{href:"/"}
+            Home
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to sign_out_path, method: "delete" do
+            Sign Out
+  -else
+    #navbarCollapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{href:"/"}
+            Home
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to sign_in_path do
+            Sign In
+        - if Clearance.configuration.allow_sign_up?
+          %li
+            = link_to t(".sign_up"), sign_up_path
+
