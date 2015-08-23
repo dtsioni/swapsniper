@@ -1,4 +1,5 @@
 = bootstrap_form_for(@user, label_errors: true) do |form|
+  %h3 Information
   = form.text_field :email, type: 'email', placeholder: "Email", hide_label: true
 
   = form.password_field :password, placeholder: "Password", hide_label: true
@@ -9,9 +10,13 @@
 
   = form.collection_select :gender, User::GENDERS, :to_s, :humanize
 
+  %h3 Where do you live?
+
   = form.fields_for :origin do |origin|
     = origin.text_field :building
     = origin.text_field :campus
+
+  %h3 Where do you want to live?
 
   = form.fields_for :destination do |destination|
     = destination.text_field :building
