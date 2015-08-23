@@ -10,5 +10,7 @@ class User < ActiveRecord::Base
   GENDERS = %w[male female]
 
   def matches
+    @destination = Location.find(campus: self.destination.campus, building: self.destination.building)
+    @matches = User.where(origin_id: @destination.id)
   end
 end
