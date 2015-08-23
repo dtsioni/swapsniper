@@ -13,13 +13,13 @@
   %h3 Where do you live?
 
   = form.fields_for :origin do |origin|
-    = origin.text_field :building
     = origin.text_field :campus
+    = origin.text_field :building
 
   %h3 Where do you want to live?
 
   = form.fields_for :destination do |destination|
-    = destination.text_field :building
     = destination.text_field :campus
+    = destination.text_field :building
 
   = form.submit
