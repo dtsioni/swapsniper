@@ -9,4 +9,12 @@
 
   = form.collection_select :gender, User::GENDERS, :to_s, :humanize
 
+  = form.fields_for :origin do |origin|
+    = origin.text_field :building
+    = origin.text_field :campus
+
+  = form.fields_for :destination do |destination|
+    = destination.text_field :building
+    = destination.text_field :campus
+
   = form.submit
