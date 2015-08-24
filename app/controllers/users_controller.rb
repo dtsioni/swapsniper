@@ -19,6 +19,21 @@ class UsersController < Clearance::UsersController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+      flash[:success] = "User was successfully updated!"
+    else
+      render :edit
+      flash.now[:error] = "User was not successfully updated."
+    end
+  end
+
   def create
     @user = user_from_params
 
