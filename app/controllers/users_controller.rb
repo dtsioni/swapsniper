@@ -1,5 +1,7 @@
 class UsersController < Clearance::UsersController
+  before_action :require_login, only: [:matches]
   def matches
+    @matches = current_user.matches
   end
 
   def new
