@@ -20,7 +20,9 @@
             = current_user.full_name
         %li
           = link_to "/users/#{current_user.id}/matches" do
-            My Matches!
+            .badge
+              = current_user.matches ? current_user.matches.count : 0
+            matches
         %li
           = link_to sign_out_path, method: "delete" do
             Sign Out
