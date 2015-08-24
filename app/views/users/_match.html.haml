@@ -4,7 +4,13 @@
   %p
     = match.description
   %p
-    Email them at
-    = mail_to match.email, match.email
-    to see if they want to swap
-
+    .accordion{id: "accordion#{match.id}"}
+      .accordion-group
+        .accordion-heading
+          .accordion-toggle{"data-toggle" => "collapse", "data-parent"=>"#accordion#{match.id}", href: "#collapse#{match.id}"}
+            = link_to "Click here to see their email"
+        .accordion-body.collapse{id: "collapse#{match.id}"}
+          .accordion-inner
+            Contact them at
+            = mail_to match.email, match.email
+            to see if they want to swap!
