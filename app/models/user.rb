@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     @matches = @residents & @migrators
   end
 
+  def full_name
+    self.first_name + " " + self.last_name
+  end
+
   def full_name_last_initial
     self.first_name + " " + self.last_name.chars.first + "."
   end
