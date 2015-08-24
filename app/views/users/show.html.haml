@@ -13,3 +13,7 @@
     Wants to live in
   %h4
     = @user.destination_building_campus
+  %br
+  %h5
+    = link_to edit_user_path(@user) do
+      Edit my information!
