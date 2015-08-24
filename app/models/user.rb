@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     #the intersection of these two arrays are our matches
     @matches = @residents & @migrators
     #only pick users of the same gender
-    @matches = @matches.select{ |match| match.gender = self.gender }
+    @matches = @matches.select{ |match| match.gender == self.gender }
   end
 
   def full_name
