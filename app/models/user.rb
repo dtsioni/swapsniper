@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def destination_building_campus
     if self.destination.campus.nil?
-      @location = "anywhere"
+      @location = "Anywhere"
     elsif self.destination.building.nil?
       @location = self.destination.campus.humanize
     else
