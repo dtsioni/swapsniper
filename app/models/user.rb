@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
     @migrators = User.where(destination_id: @where_i_live.id)
     #the intersection of these two arrays are our matches
     @matches = @residents & @migrators
+    #only pick users of the same gender
+    @matches = @matches.select{ |match| match.gender = self.gender }
   end
 
   def full_name
