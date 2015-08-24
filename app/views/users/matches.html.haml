@@ -1,3 +1,5 @@
-- unless @matches.nil?
+- if @matches.nil?
+  No matches!
+- else
   - @matches.each do |match|
-    = match.first_name + match.last_name
+    = render partial: 'users/match', :locals => {:match => match}
