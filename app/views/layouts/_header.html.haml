@@ -16,6 +16,9 @@
             Home
       %ul.nav.navbar-nav.navbar-right
         %li
+          = link_to "/users/#{current_user.id}/matches" do
+            My Matches!
+        %li
           = link_to sign_out_path, method: "delete" do
             Sign Out
   -else
