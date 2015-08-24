@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_action :require_login, only: [:matches]
+  before_action :require_login, only: [:matches, :show]
   def matches
     @matches = current_user.matches
   end
@@ -13,6 +13,10 @@ class UsersController < Clearance::UsersController
     @user.destination = @destination
 
     render template: "users/new"
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def create
