@@ -22,4 +22,26 @@ class User < ActiveRecord::Base
     #the intersection of these two arrays are our matches
     @matches = @residents & @migrators
   end
+
+  def full_name_last_initial
+    self.first_name + " " + self.last_name.chars.first + "."
+  end
+
+  def origin_building_campus
+    self.origin.building.humanize + ", " + self.origin.campus.humanize
+  end
+
+  def destination_building_campus
+    if self.destination.campus.nil?
+      @location = "anywhere"
+    elsif self.destination.building.nil?
+      @location = self.destination.campus.humanize
+    else
+      @location = self.destination.building.humanize + ", " + self.destination.campus.humanize
+    end
+  end
+
+  def description
+    "lives in " + self.origin_building_campus + " and wants to move to " + self.destination_building_campus + "!"
+  end
 end

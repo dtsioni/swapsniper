@@ -1,5 +1,7 @@
 - if @matches.nil?
-  No matches!
+  %h2.text-center No matches
 - else
+  %h2.text-center Your matches!
   - @matches.each do |match|
-    = render partial: 'users/match', :locals => {:match => match}
+    %ul.list-group.col-md-6.col-md-offset-3
+      = render partial: 'users/match', :locals => {:match => match}
