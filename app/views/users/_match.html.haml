@@ -3,5 +3,8 @@
     = match.full_name_last_initial
   %p
     = match.description
-
+  %p
+    Email them at
+    = mail_to match.email, match.email
+    to see if they want to swap
 
