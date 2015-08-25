@@ -40,6 +40,7 @@ class UsersController < Clearance::UsersController
     @user.origin = Origin.find_or_create_by(campus: @user.origin.campus, building: @user.origin.building)
     @user.destination = Destination.find_or_create_by(campus: @user.destination.campus, building: @user.destination.building)
 
+    @user.role = "student"
     if @user.save
       sign_in @user
       redirect_back_or url_after_create
