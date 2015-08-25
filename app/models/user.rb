@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :origin
   accepts_nested_attributes_for :destination
 
-  validates_presence_of :first_name, :last_name, :gender
+  validates_presence_of :first_name, :last_name, :gender, :role
 
   GENDERS = %w[male female]
 
