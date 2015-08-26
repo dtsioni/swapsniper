@@ -54,7 +54,7 @@ class UsersController < Clearance::UsersController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name, :gender, :note
+    params.require(:user).permit(:email, :password, :first_name, :last_name, :gender, :note,
       destination_attributes: [:campus, :building], origin_attributes: [:campus, :building, :floor])
   end
 end
