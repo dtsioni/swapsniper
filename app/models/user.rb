@@ -48,6 +48,6 @@ class User < ActiveRecord::Base
   end
 
   def description
-    "Lives in " + self.origin_building_campus + " and wants to move to " + self.destination_building_campus
+    "Lives in floor " + self.origin.floor.to_s + " of " + self.origin_building_campus + " and wants to move to " + self.destination_building_campus
   end
 end
