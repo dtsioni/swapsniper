@@ -10,10 +10,6 @@
       Swapsniper
   -if signed_in?
     #navbarCollapse.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li.active
-          %a{href:"/"}
-            Home
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to user_path(current_user) do
@@ -28,10 +24,6 @@
             Sign Out
   -else
     #navbarCollapse.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li.active
-          %a{href:"/"}
-            Home
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to sign_in_path do
