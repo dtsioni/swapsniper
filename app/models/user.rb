@@ -34,16 +34,16 @@ class User < ActiveRecord::Base
   end
 
   def origin_building_campus
-    self.origin.building.humanize + ", " + self.origin.campus.humanize
+    self.origin.building.titleize + ", " + self.origin.campus.titleize
   end
 
   def destination_building_campus
     if self.destination.campus.nil?
       @location = "Anywhere"
     elsif self.destination.building.nil?
-      @location = self.destination.campus.humanize
+      @location = self.destination.campus.titleize
     else
-      @location = self.destination.building.humanize + ", " + self.destination.campus.humanize
+      @location = self.destination.building.titleize + ", " + self.destination.campus.titleize
     end
   end
 
