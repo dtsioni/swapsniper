@@ -19,6 +19,9 @@ class Ability
         end
     when "admin"
         can :manage, :all
+    else
+        can :new, User
+        can :create, User
     end
     # Define abilities for the passed in user here. For example:
     #
