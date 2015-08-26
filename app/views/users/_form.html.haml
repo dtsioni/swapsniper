@@ -15,6 +15,7 @@
   = form.fields_for :origin do |origin|
     = origin.collection_select :campus, Location::CAMPUSES, :to_s, :titleize
     = origin.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
+    = origin.number_field :floor
 
   %h3 Where do you want to live?
 

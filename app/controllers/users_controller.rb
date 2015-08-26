@@ -39,7 +39,7 @@ class UsersController < Clearance::UsersController
   def create
     @user = user_from_params
 
-    @user.origin = Origin.find_or_create_by(campus: @user.origin.campus, building: @user.origin.building)
+    @user.origin = Origin.find_or_create_by(campus: @user.origin.campus, building: @user.origin.building, floor: @user.origin.floor)
     @user.destination = Destination.find_or_create_by(campus: @user.destination.campus, building: @user.destination.building)
 
     @user.role = "student"
@@ -55,6 +55,6 @@ class UsersController < Clearance::UsersController
 
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name, :gender,
-      destination_attributes: [:campus, :building], origin_attributes: [:campus, :building])
+      destination_attributes: [:campus, :building], origin_attributes: [:campus, :building, :floor])
   end
 end
