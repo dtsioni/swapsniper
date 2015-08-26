@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :origins, only: [:create, :new]
   resources :destinations, only: [:create, :new]
-  resources :users, only: [:show, :edit, :update, :matches]
+  resources :users, only: [:show, :edit, :update]
 
   get 'users/:id/matches', to: 'users#matches'
 
