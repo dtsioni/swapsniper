@@ -18,9 +18,9 @@ Rails.application.routes.draw do
 
   resources :origins, only: [:create, :new]
   resources :destinations, only: [:create, :new]
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :matches]
 
-  get 'users/:user_id/matches' => 'users#matches'
+  get 'users/:id/matches', to: 'users#matches'
 
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
