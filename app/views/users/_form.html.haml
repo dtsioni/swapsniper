@@ -17,6 +17,8 @@
     = origin.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
     = origin.number_field :floor
 
+  = form.text_field :note, label: "Additional Information"
+
   %h3 Where do you want to live?
 
   = form.fields_for :destination do |destination|
