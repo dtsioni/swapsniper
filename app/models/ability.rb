@@ -3,6 +3,21 @@ class Ability
 
   def initialize(user)
     user ||= User.new(role: "guest")
+    case user.role
+    when "student"
+        can :show, User do |this_user|
+            this_user.id == user.id
+        end
+        can :matches, User do |this_user|
+            this_user.id == user.id
+        end
+        can :edit, User do |this_user|
+            this_user.id == user.id
+        end
+        can :update, User do |this_user|
+            this_user.id == user.id
+        end
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
