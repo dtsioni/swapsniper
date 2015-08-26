@@ -17,6 +17,8 @@ class Ability
         can :update, User do |this_user|
             this_user.id == user.id
         end
+    when "admin"
+        can :manage, :all
     end
     # Define abilities for the passed in user here. For example:
     #
