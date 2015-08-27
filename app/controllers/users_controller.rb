@@ -39,7 +39,7 @@ class UsersController < Clearance::UsersController
   def create
     @user = user_from_params
 
-    @user.origin = Origin.find_or_create_by(campus: @user.origin.campus, building: @user.origin.building, floor: @user.origin.floor)
+    @user.origin = Origin.find_or_create_by(campus: @user.origin.campus, building: @user.origin.building, floor: @user.origin.floor, style: @user.origin.style)
     @user.destination = Destination.find_or_create_by(campus: @user.destination.campus, building: @user.destination.building)
 
     @user.role = "student"

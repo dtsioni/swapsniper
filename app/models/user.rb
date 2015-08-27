@@ -12,13 +12,19 @@ class User < ActiveRecord::Base
   def matches
     @matches = nil
     #find users that live where i want to live
-    @where_i_want_to_live = Origin.find_by(campus: self.destination.campus, building: self.destination.building)
+    @where_i_want_to_live = Origin.where(campus: self.destination.campus, building: self.destination.building)
     return if @where_i_want_to_live.nil?
-    @residents = User.where(origin_id: @where_i_want_to_live.id)
+    @residents = []
+    @where_i_want_to_live.each do |loc|
+      @residents = @residents + User.where(origin_id: loc.id)
+    end
     #find users that want to live where i live
-    @where_i_live = Destination.find_by(campus: self.origin.campus, building: self.origin.building)
+    @where_i_live = Destination.where(campus: self.origin.campus, building: self.origin.building)
     return if @where_i_live.nil?
-    @migrators = User.where(destination_id: @where_i_live.id)
+    @migrators = []
+    @where_i_live.each do |loc|
+      @migrators = @migrators + User.where(destination_id: loc.id)
+    end
     #the intersection of these two arrays are our matches
     @matches = @residents & @migrators
     #only pick users of the same gender
