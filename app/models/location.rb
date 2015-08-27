@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
+  STYLES = ["Double", "Single", "Double - Apartment", "Single - Apartment", "Double - Suite", "Other"]
   CAMPUSES = ["livingston", "college avenue", "busch", "cook/douglass"]
 
   BUILDINGS_LIVINGSTON = ["livingston apartments", "lynton towers north", "lynton towers south", "quad 1", "quad 2", "quad 3"]

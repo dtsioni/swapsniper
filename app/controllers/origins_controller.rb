@@ -20,6 +20,6 @@ class OriginsController < LocationsController
   private
 
   def origin_params
-    params.require(:origin).permit(:campus, :building, :floor)
+    params.require(:origin).permit(:campus, :building, :floor, :style)
   end
 end
