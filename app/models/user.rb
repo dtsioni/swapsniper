@@ -47,6 +47,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def origin_summary
+    "Floor " + self.origin.floor.to_s + ", " + self.origin.building.titleize + ", " + self.origin.campus.titleize
+  end
+
+  def destination_summary
+    destination_building_campus
+  end
+
   def description
     "Lives in floor " + self.origin.floor.to_s + " of " + self.origin_building_campus + " and wants to move to " + self.destination_building_campus
   end

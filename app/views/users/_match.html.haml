@@ -2,7 +2,17 @@
   %h4
     = match.full_name_last_initial
   %p
-    = match.description
+    Lives in:
+    %strong
+      = match.origin_summary
+  %p
+    Wants to live in:
+    %strong
+      = match.destination_summary
+  -if match.note
+    %p
+      Additional information:
+      = match.note
   %p
     .accordion{id: "accordion#{match.id}"}
       .accordion-group
