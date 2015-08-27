@@ -13,7 +13,7 @@
     Wants to live in:
     %strong
       = match.destination_summary
-  -if match.note
+  -unless match.note.empty?
     %p
       Additional information:
       = match.note
