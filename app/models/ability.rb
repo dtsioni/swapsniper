@@ -19,6 +19,16 @@ class Ability
         end
     when "admin"
         can :manage, :all
+    when "deactivated"
+        can :show, User do |this_user|
+            this_user.id == user.id
+        end
+        can :edit, User do |this_user|
+            this_user.id == user.id
+        end
+        can :update, User do |this_user|
+            this_user.id == user.id
+        end
     else
         can :new, User
         can :create, User

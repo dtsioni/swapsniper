@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |_exception|
-    flash[:error] = "You're not allowed to do that!"
-    redirect_to root_url
+    if current_user.try(:role) == "deactivated"
+      flash[:error] = "Your account is deactivated! Click on \'Reactivate my account\' to keep using Swapsniper"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = "You're not allowed to do that!"
+      redirect_to root_url
+    end
   end
 end
