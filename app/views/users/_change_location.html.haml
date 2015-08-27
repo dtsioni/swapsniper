@@ -1,0 +1,72 @@
+= bootstrap_form_for(@user, label_errors: true) do |form|
+  %h3 Where do you live?
+
+  = form.fields_for :origin do |origin|
+    = origin.collection_select :campus, Location::CAMPUSES, :to_s, :titleize, selected: "livingston"
+    = origin.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
+    = origin.number_field :floor, value: :empty
+
+  = form.text_field :note, label: "Additional Information"
+
+  %h3 Where do you want to live?
+
+  = form.fields_for :destination do |destination|
+    = destination.collection_select :campus, Location::CAMPUSES, :to_s, :titleize, selected: "livingston"
+    = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
+
+  = form.submit
+
+  :javascript
+    $(document).ready(function(){
+      //origin
+      $('#user_origin_attributes_campus').change(function(){
+        selected_building = $("#user_origin_attributes_campus>option:selected").text().toLowerCase();
+        var buildings = "";
+        switch(selected_building){
+          case "busch":
+            buildings = BUILDINGS_BUSCH;
+            break;
+          case "college avenue":
+            buildings = BUILDINGS_COLLEGE_AVENUE;
+            break;
+          case "cook/douglass":
+            buildings = BUILDINGS_COOK_DOUGLASS;
+            break;
+          case "livingston":
+            buildings = BUILDINGS_LIVINGSTON;
+        }
+        var newOptions = "";
+        for(i = 0; i < buildings.length; i++){
+          newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
+        }
+        $('#user_origin_attributes_building').html(newOptions);
+      })
+      //destination
+      $('#user_destination_attributes_campus').change(function(){
+        selected_building = $("#user_destination_attributes_campus>option:selected").text().toLowerCase();
+        var buildings = "";
+        switch(selected_building){
+          case "busch":
+            buildings = BUILDINGS_BUSCH;
+            break;
+          case "college avenue":
+            buildings = BUILDINGS_COLLEGE_AVENUE;
+            break;
+          case "cook/douglass":
+            buildings = BUILDINGS_COOK_DOUGLASS;
+            break;
+          case "livingston":
+            buildings = BUILDINGS_LIVINGSTON;
+        }
+        var newOptions = "";
+        for(i = 0; i < buildings.length; i++){
+          newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
+        }
+        $('#user_destination_attributes_building').html(newOptions);
+      })
+    });
+
+=javascript_tag "var BUILDINGS_LIVINGSTON = #{Location::BUILDINGS_LIVINGSTON};"
+=javascript_tag "var BUILDINGS_BUSCH = #{Location::BUILDINGS_BUSCH};"
+=javascript_tag "var BUILDINGS_COLLEGE_AVENUE = #{Location::BUILDINGS_COLLEGE_AVENUE};"
+=javascript_tag "var BUILDINGS_COOK_DOUGLASS = #{Location::BUILDINGS_COOK_DOUGLASS};"
