@@ -1,3 +1,9 @@
+- if @user.deactivated?
+  .col-md-10.col-md-offset-1.text-center
+    %h3
+      Your account is deactivated! Please click
+      = link_to "here", activate_path(@user)
+      to reactivate it
 .col-md-6.col-md-offset-3.text-center
   %h2 My Profile
   %ul.list-group
@@ -29,7 +35,6 @@
   %h5
     = link_to edit_user_path(@user) do
       Update my location information
+  %h5
     = link_to deactivate_path(@user) do
-      Deactivate
-    = link_to activate_path(@user) do
-      Activate
+      Deactivate my account
