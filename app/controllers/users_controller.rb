@@ -3,6 +3,7 @@ class UsersController < Clearance::UsersController
   load_and_authorize_resource
   skip_load_resource :only => :create
 
+
   def matches
     @matches = current_user.matches
   end
@@ -28,12 +29,12 @@ class UsersController < Clearance::UsersController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update_attributes(user_params)
       redirect_to @user
       flash[:success] = "User was successfully updated!"
     else
-      render :edit
       flash.now[:error] = "User was not successfully updated."
+      render :edit
     end
   end
 
@@ -54,21 +55,21 @@ class UsersController < Clearance::UsersController
 
   def deactivate
     @user = User.find(params[:id])
-    @user.role = "deactivated"
-    if @user.save
+    if @user.update_attribute(:role, "deactivated")
     else
       flash[:error] = "Your account could not be deactivated"
+      redirect_to user_path(@user)
     end
   end
 
   def activate
     @user = User.find(params[:id])
-    @user.role = "student"
-    if @user.save
+    if @user.update_attribute(:role, "student")
       redirect_to edit_user_path(@user)
       flash[:success] = "Your account was reactivated! Please update your information"
     else
       flash[:error] = "Your account could not be reactivated"
+      redirect_to user_path(@user)
     end
   end
 
