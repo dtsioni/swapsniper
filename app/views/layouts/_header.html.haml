@@ -31,4 +31,13 @@
         - if Clearance.configuration.allow_sign_up?
           %li
             = link_to t(".sign_up"), sign_up_path
+#error_explanation.center
+  - flash.each do |name, msg|
+    - case name
+    - when "error"
+      .alert.alert-danger.text-center
+        = content_tag :div, msg, class: name
+    - when "success"
+      .alert.alert-success.text-center
+        = content_tag :div, msg, class: name
 
