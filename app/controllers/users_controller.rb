@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_action :require_login, only: [:matches, :show]
+  before_action :require_login, except: [:new, :create]
   load_and_authorize_resource
   skip_load_resource :only => :create
 
