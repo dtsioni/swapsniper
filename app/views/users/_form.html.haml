@@ -1,7 +1,8 @@
 = bootstrap_form_for(@user, label_errors: true) do |form|
-  %h3 Information
+  %h3 Your information
+  %h6 Email must end in rutgers.edu
+  %h6 Your email will be displayed to other users
   = form.text_field :email, type: 'email', placeholder: "Email", hide_label: true
-
   = form.password_field :password, placeholder: "Password", hide_label: true
 
   = form.text_field :first_name, placeholder: "First name", hide_label: true
@@ -10,6 +11,8 @@
 
   = form.collection_select :gender, User::GENDERS, :to_s, :humanize
 
+  %br
+
   %h3 Where do you live?
 
   = form.fields_for :origin do |origin|
@@ -17,7 +20,13 @@
     = origin.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
     = origin.number_field :floor
     = origin.collection_select :style, Location::STYLES, :to_s, :to_s
-  = form.text_field :note, label: "Additional information about your living situation"
+  = form.label "Additional information about your living situation (optional)"
+  %h6
+    Here you can include information like the learning community you're a part of,
+    if you live with an RA, or anything else you want people to know about your room
+  = form.text_field :note, hide_label: true
+
+  %br
 
   %h3 Where do you want to live?
 
@@ -26,8 +35,6 @@
     = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
 
   = form.submit
-
-
 
   :javascript
     $(document).ready(function(){
