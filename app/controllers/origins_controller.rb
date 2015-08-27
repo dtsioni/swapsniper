@@ -5,16 +5,7 @@ class OriginsController < LocationsController
 
   def create
     @origin = Origin.find_or_create_by(origin_params)
-
-    if @origin.save
-      current_user.origin = @origin
-      current_user.save
-
-      redirect_to root_path
-    else
-      flash.now[:error] = "Your origin was not created."
-      redirect_to root_path
-    end
+    @origin.save
   end
 
   private
