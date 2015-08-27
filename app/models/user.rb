@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :origin
   accepts_nested_attributes_for :destination
 
-  validates_presence_of :first_name, :last_name, :gender, :role
+  EMAIL_REGEX = /\A.+@rutgers\.edu\z/i
 
+  validates_presence_of :first_name, :last_name, :gender, :role
+  validates :email, presence: true, uniqueness: true, format:{ with: EMAIL_REGEX }
   GENDERS = %w[male female]
+
 
   def matches
     @matches = nil
