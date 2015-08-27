@@ -1,6 +1,7 @@
 class UsersController < Clearance::UsersController
   before_action :require_login, only: [:matches, :show]
   load_and_authorize_resource
+  skip_load_resource :only => :create
 
   def matches
     @matches = current_user.matches
