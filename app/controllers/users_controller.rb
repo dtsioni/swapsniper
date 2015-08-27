@@ -51,6 +51,26 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def deactivate
+    @user = User.find(params[:id])
+    @user.role = "deactivated"
+    if @user.save
+    else
+      flash[:error] = "Your account could not be deactivated"
+    end
+  end
+
+  def activate
+    @user = User.find(params[:id])
+    @user.role = "student"
+    if @user.save
+      redirect_to edit_user_path(@user)
+      flash[:success] = "Your account was reactivated! Please update your information"
+    else
+      flash[:error] = "Your account could not be reactivated"
+    end
+  end
+
   private
 
   def user_params

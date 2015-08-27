@@ -29,3 +29,7 @@
   %h5
     = link_to edit_user_path(@user) do
       Update my location information
+    = link_to deactivate_path(@user) do
+      Deactivate
+    = link_to activate_path(@user) do
+      Activate

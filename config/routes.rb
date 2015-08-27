@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   get 'users/:id/matches', to: 'users#matches'
+  get 'users/:id/deactivate', to: 'users#deactivate', as: 'deactivate'
+  get 'users/:id/activate', to: 'users#activate', as: 'activate'
 
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
