@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
   def description
     "Lives in floor " + self.origin.floor.to_s + " of " + self.origin_building_campus + " and wants to move to " + self.destination_building_campus
   end
+
+  def deactivated?
+    self.role == "deactivated"
+  end
 end
