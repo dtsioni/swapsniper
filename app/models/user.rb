@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   def matches
     @matches = nil
+    return if self.deactivated?
     #find users that live where i want to live
     @where_i_want_to_live = Origin.where(campus: self.destination.campus, building: self.destination.building)
     return if @where_i_want_to_live.nil?
@@ -28,7 +29,10 @@ class User < ActiveRecord::Base
     #the intersection of these two arrays are our matches
     @matches = @residents & @migrators
     #only pick users of the same gender
-    @matches = @matches.select{ |match| match.gender == self.gender }
+    @matches = @matches.select do |match|
+      match.gender == self.gender
+      match.role != "deactivated"
+    end
   end
 
   def full_name
