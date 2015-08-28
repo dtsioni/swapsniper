@@ -37,5 +37,5 @@
       Update my location information
   - unless @user.deactivated?
     %h5
-      = link_to deactivate_path(@user) do
+      = link_to deactivate_path(@user), data: { confirm: "Are you sure you want to deactivate your account? Users won't be able to match with you until you reactivate." } do
         Deactivate my account
