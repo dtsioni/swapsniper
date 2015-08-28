@@ -65,7 +65,7 @@ class UsersController < Clearance::UsersController
   def activate
     @user = User.find(params[:id])
     if @user.update_attribute(:role, "student")
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(@user)
       flash[:success] = "Your account was reactivated! Please update your information"
     else
       flash[:error] = "Your account could not be reactivated"
