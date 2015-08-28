@@ -1,6 +1,6 @@
 = bootstrap_form_for(@user, label_errors: true) do |form|
   %h3 Your information
-  %h6 Email must end in rutgers.edu
+  %h6 Email must end in @rutgers.edu or @scarletmail.rutgers.edu
   %h6 Your email will be displayed to other users
   = form.text_field :email, type: 'email', placeholder: "Email", hide_label: true
   = form.password_field :password, placeholder: "Password", hide_label: true
