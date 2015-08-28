@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
 
   get '/help', to: 'pages#help'
-
+  get '/tos', to: 'pages#tos'
 
   if Clearance.configuration.allow_sign_up?
     get '/sign_up' => 'users#new', as: 'sign_up'
