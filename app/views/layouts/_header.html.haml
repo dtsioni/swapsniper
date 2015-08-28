@@ -20,6 +20,8 @@
               = current_user.matches ? current_user.matches.count : 0
             matches
         %li
+          = link_to "Help", help_path
+        %li
           = link_to sign_out_path, method: "delete" do
             Sign Out
   -else
