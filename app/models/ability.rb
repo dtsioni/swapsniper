@@ -20,6 +20,8 @@ class Ability
         can :deactivate, User do |this_user|
             this_user.id == user.id
         end
+        can :new, User
+        can :create, User
     when "admin"
         can :manage, :all
     when "deactivated"
@@ -35,6 +37,8 @@ class Ability
         can :activate, User do |this_user|
             this_user.id == user.id
         end
+        can :new, User
+        can :create, User
     else
         can :new, User
         can :create, User
