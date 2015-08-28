@@ -28,6 +28,8 @@
     #navbarCollapse.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
+          = link_to "Help", help_path
+        %li
           = link_to sign_in_path do
             Sign In
         - if Clearance.configuration.allow_sign_up?
