@@ -17,91 +17,9 @@
 
   = form.submit
 
-  :javascript
-    $(document).ready(function(){
-        selected_building = $("#user_origin_attributes_campus>option:selected").text().toLowerCase();
-        var buildings = "";
-        switch(selected_building){
-          case "busch":
-            buildings = #{Location::BUILDINGS_BUSCH};
-            break;
-          case "college avenue":
-            buildings = #{Location::BUILDINGS_COLLEGE_AVENUE};
-            break;
-          case "cook/douglass":
-            buildings = #{Location::BUILDINGS_COOK_DOUGLASS};
-            break;
-          case "livingston":
-            buildings = #{Location::BUILDINGS_LIVINGSTON};
-        }
-        var newOptions = "";
-        for(i = 0; i < buildings.length; i++){
-          newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
-        }
-        $('#user_origin_attributes_building').html(newOptions);
-      $('#user_origin_attributes_campus').change(function(){
-        selected_building = $("#user_origin_attributes_campus>option:selected").text().toLowerCase();
-        var buildings = "";
-        switch(selected_building){
-          case "busch":
-            buildings = #{Location::BUILDINGS_BUSCH};
-            break;
-          case "college avenue":
-            buildings = #{Location::BUILDINGS_COLLEGE_AVENUE};
-            break;
-          case "cook/douglass":
-            buildings = #{Location::BUILDINGS_COOK_DOUGLASS};
-            break;
-          case "livingston":
-            buildings = #{Location::BUILDINGS_LIVINGSTON};
-        }
-        var newOptions = "";
-        for(i = 0; i < buildings.length; i++){
-          newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
-        }
-        $('#user_origin_attributes_building').html(newOptions);
-      });
-      //destination
-      selected_building = $("#user_destination_attributes_campus>option:selected").text().toLowerCase();
-      var buildings = "";
-      switch(selected_building){
-        case "busch":
-          buildings = #{Location::BUILDINGS_BUSCH};
-          break;
-        case "college avenue":
-          buildings = #{Location::BUILDINGS_COLLEGE_AVENUE};
-          break;
-        case "cook/douglass":
-          buildings = #{Location::BUILDINGS_COOK_DOUGLASS};
-          break;
-        case "livingston":
-          buildings = #{Location::BUILDINGS_LIVINGSTON};
-      }
-      var newOptions = "";
-      for(i = 0; i < buildings.length; i++){
-        newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
-      }
-      $('#user_destination_attributes_building').html(newOptions);
-      $('#user_destination_attributes_campus').change(function(){
-        selected_building = $("#user_destination_attributes_campus>option:selected").text().toLowerCase();
-        var buildings = "";
-        switch(selected_building){
-          case "busch":
-            buildings = #{Location::BUILDINGS_BUSCH};
-            break;
-          case "college avenue":
-            buildings = #{Location::BUILDINGS_COLLEGE_AVENUE};
-            break;
-          case "cook/douglass":
-            buildings = #{Location::BUILDINGS_COOK_DOUGLASS};
-            break;
-          case "livingston":
-            buildings = #{Location::BUILDINGS_LIVINGSTON};
-        }
-        var newOptions = "";
-        for(i = 0; i < buildings.length; i++){
-          newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
-        }
-        $('#user_destination_attributes_building').html(newOptions);
-      });
-    });
+  = javascript_tag "var BUILDINGS_LIVINGSTON = #{Location::BUILDINGS_LIVINGSTON};"
+  = javascript_tag "var BUILDINGS_BUSCH = #{Location::BUILDINGS_BUSCH};"
+  = javascript_tag "var BUILDINGS_COLLEGE_AVENUE = #{Location::BUILDINGS_COLLEGE_AVENUE};"
+  = javascript_tag "var BUILDINGS_COOK_DOUGLASS = #{Location::BUILDINGS_COOK_DOUGLASS};"
+
+  = javascript_include_tag 'location'
