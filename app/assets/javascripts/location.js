@@ -57,7 +57,7 @@ $(document).ready(function(){
     case "livingston":
       buildings = BUILDINGS_LIVINGSTON;
   }
-  var newOptions = "";
+  var newOptions = "<option value='anywhere'>Anywhere</option>";
   for(i = 0; i < buildings.length; i++){
     newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
   }
@@ -78,7 +78,7 @@ $(document).ready(function(){
       case "livingston":
         buildings = BUILDINGS_LIVINGSTON;
     }
-    var newOptions = "";
+    var newOptions = "<option value='anywhere'>Anywhere</option>";
     for(i = 0; i < buildings.length; i++){
       newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
     }
