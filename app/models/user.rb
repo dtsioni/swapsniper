@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     end
     #find users that want to live where i live
     @where_i_live = Destination.where(campus: self.origin.campus, building: self.origin.building)
+    @where_i_live = @where_i_live + Destination.where(campus: self.origin.campus, building: "anywhere")
     return if @where_i_live.nil?
     @migrators = []
     @where_i_live.each do |loc|
