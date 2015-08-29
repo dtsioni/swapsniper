@@ -5,7 +5,11 @@
     %h4
       Be sure to check back soon
 - else
-  %h2.text-center Your matches
+  .text-center
+    %h2 Your matches
+    %h4
+      You are trying to swap to:
+      = current_user.destination_summary
   - @matches.each do |match|
     %ul.list-group.col-md-8.col-md-offset-2
       = render partial: 'users/match', :locals => {:match => match}
