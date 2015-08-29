@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
     @matches = nil
     return if self.deactivated?
     #find users that live where i want to live
-    @where_i_want_to_live = Origin.where(campus: self.destination.campus, building: self.destination.building)
+    if self.destination.building == "anywhere"
+      @where_i_want_to_live = Origin.where(campus: self.destination.campus)
+    else
+      @where_i_want_to_live = Origin.where(campus: self.destination.campus, building: self.destination.building)
+    end
     return if @where_i_want_to_live.nil?
     @residents = []
     @where_i_want_to_live.each do |loc|
