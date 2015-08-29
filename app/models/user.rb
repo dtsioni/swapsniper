@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     end
     #find users that want to live where i live
     @where_i_live = Destination.where(campus: self.origin.campus, building: self.origin.building)
+    #also include any users that want to live on my campus, but "anywhere", which is stored as an explicit row
     @where_i_live = @where_i_live + Destination.where(campus: self.origin.campus, building: "anywhere")
     return if @where_i_live.nil?
     @migrators = []
@@ -40,6 +41,8 @@ class User < ActiveRecord::Base
     @matches = @matches.select do |match|
       match.gender == self.gender
       match.role != "deactivated"
+      #make sure you don't match with yourself
+      match.email != self.email
     end
   end
 
