@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
     @matches = nil
     return if self.deactivated?
     #find users that live where i want to live
+    #we have to pick all origins with this specific building and campus
+    #this is because there are "duplicate" entries, because floor and room type makes the "same" locations "different"
     if self.destination.building == "anywhere"
       @where_i_want_to_live = Origin.where(campus: self.destination.campus)
     else
@@ -40,10 +42,15 @@ class User < ActiveRecord::Base
     #only pick users of the same gender
     @matches = @matches.select do |match|
       match.gender == self.gender
+    end
+    @matches = @matches.select do |match|
       match.role != "deactivated"
-      #make sure you don't match with yourself
+    end
+    #make sure you don't match with yourself
+    @matches = @matches.select do |match|
       match.email != self.email
     end
+
   end
 
   def full_name
