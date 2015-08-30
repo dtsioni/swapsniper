@@ -5,6 +5,7 @@ gem 'haml'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'cancan'
+gem 'table_print'
 # For Heroku deploy
 gem 'rails_12factor', group: :production
 ruby "2.1.6"
