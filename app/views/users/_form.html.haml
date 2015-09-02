@@ -7,6 +7,7 @@
 
   = form.text_field :first_name, placeholder: "First name", hide_label: true
 
+  %h6 Only the first initial of your last name will be displayed to other users
   = form.text_field :last_name, placeholder: "Last name", hide_label: true
 
   = form.collection_select :gender, User::GENDERS, :to_s, :humanize
@@ -23,7 +24,7 @@
   = form.label "Additional information about your living situation (optional)"
   %h6
     Here you can include information like the learning community you're a part of,
-    if you live with an RA, or anything else you want people to know about your room
+    if you live in special interest housing, or any other housing restrictions
   = form.text_field :note, hide_label: true
 
   %br
