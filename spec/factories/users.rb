@@ -2,9 +2,10 @@ FactoryGirl.define do
   factory :user do
     sequence(:first_name) { |n| "ex_first_#{n}" }
     sequence(:last_name) { |n| "ex_last_#{n}" }
-    sequence(:email) { |n| "test#{n}@example.com" }
+    sequence(:email) { |n| "test#{n}@rutgers.edu" }
     password "password"
-    password_confirmation "password"
+    gender "male"
+    role "student"
   end
 
   trait :male do
