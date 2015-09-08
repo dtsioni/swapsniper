@@ -1,5 +1,5 @@
 = bootstrap_form_for(@user, label_errors: true) do |form|
-  %h3 Where do you live?
+  %h3 Where do you currently live?
 
   = form.fields_for :origin do |origin|
     = origin.collection_select :campus, Location::CAMPUSES, :to_s, :titleize, selected: "livingston"
