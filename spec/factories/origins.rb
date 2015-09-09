@@ -1,9 +1,12 @@
 FactoryGirl.define do
   factory :origin do
-    campus "livingston"
-    building "livingston apartments"
     floor 1
     style "Double - Apartment"
+  end
+
+  trait :livingston do
+    campus "livingston"
+    building "livingston apartments"
   end
 
   trait :busch do
