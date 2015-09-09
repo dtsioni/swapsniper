@@ -10,4 +10,9 @@ FactoryGirl.define do
     campus "busch"
     building "silvers apartments"
   end
+
+  trait :cookdouglass do
+    campus "cook/douglass"
+    building "newell apartments"
+  end
 end
