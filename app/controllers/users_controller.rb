@@ -30,8 +30,13 @@ class UsersController < Clearance::UsersController
   def update
     @user = User.find(params[:id])
 
-    @origin = Origin.find_or_create_by(params[:user][:origin_attributes].except(:id))
-    @destination = Destination.find_or_create_by(params[:user][:destination_attributes].except(:id))
+    @origin = Origin.find_or_create_by(campus: params[:user][:origin_attributes][:campus],
+                                      building: params[:user][:origin_attributes][:building],
+                                      floor: params[:user][:origin_attributes][:floor],
+                                      style: params[:user][:origin_attributes][:style])
+    @destination = Destination.find_or_create_by(campus: params[:user][:destination_attributes][:campus],
+                                                building: params[:user][:destination_attributes][:building])
+
     @user.origin = @origin
     @user.destination = @destination
 
