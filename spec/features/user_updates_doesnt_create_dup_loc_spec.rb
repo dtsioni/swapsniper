@@ -17,8 +17,11 @@ feature "User updates their information" do
     #origin by default is livingston apartments, livingston
     select "Livingston", from: "user_origin_attributes_campus"
     select "Livingston Apartments", from: "user_origin_attributes_building"
-    select "Busch", from: "user_destination_attributes_campus"
+    select "Cook/Douglass", from: "user_destination_attributes_campus"
+
     expect{click_button "Update User"}.to_not change(Origin, :count)
+    expect(page).to have_content("success")
+    expect(page).to have_content("Cook/Douglass") #destination was busch, this tests that the user was updated
   end
 end
 
