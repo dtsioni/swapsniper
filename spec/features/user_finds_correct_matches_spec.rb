@@ -25,4 +25,42 @@ feature "User goes to matches page" do
 
     should have_content(@perfect_match.full_name_last_initial)
   end
+
+  scenario "User wants to live in any building" do
+    @user.destination = FactoryGirl.create(:destination, :busch, building: "anywhere")
+    @user.save
+    @match = FactoryGirl.create(:user)
+    @match.origin = FactoryGirl.create(:origin, :busch, building: "not a perfect match")
+    @match.destination = FactoryGirl.create(:destination, :livingston)
+    @match.save
+
+    visit root_path
+
+    should have_content(@match.full_name_last_initial)
+  end
+
+  scenario "User matches with someone who wants to live in any building" do
+    @campus_match = FactoryGirl.create(:user)
+    @campus_match.origin = FactoryGirl.create(:origin, :busch)
+    @campus_match.destination = FactoryGirl.create(:destination, :livingston, building: "anywhere")
+    @campus_match.save
+
+    visit root_path
+
+    should have_content(@campus_match.full_name_last_initial)
+  end
+
+  scenario "User wants to live in any building and so does their match" do
+    @user.origin = FactoryGirl.create(:origin, :livingston, building: "not a perfect match")
+    @user.destination = FactoryGirl.create(:destination, :busch, building: "anywhere")
+    @user.save
+    @match = FactoryGirl.create(:user)
+    @match.origin = FactoryGirl.create(:origin, :busch, building: "not a perfect match")
+    @match.destination = FactoryGirl.create(:destination, :livingston, building: "anywhere")
+    @match.save
+
+    visit root_path
+
+    should have_content(@match.full_name_last_initial)
+  end
 end
