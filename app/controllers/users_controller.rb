@@ -29,7 +29,13 @@ class UsersController < Clearance::UsersController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+
+    @origin = Origin.find_or_create_by(params[:user][:origin_attributes].except(:id))
+    @destination = Destination.find_or_create_by(params[:user][:destination_attributes].except(:id))
+    @user.origin = @origin
+    @user.destination = @destination
+
+    if @user.save
       redirect_to @user
       flash[:success] = "User was successfully updated!"
     else
