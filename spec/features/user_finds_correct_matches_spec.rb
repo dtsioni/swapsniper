@@ -40,6 +40,8 @@ feature "User goes to matches page" do
   end
 
   scenario "User matches with someone who wants to live in any building" do
+    @user.origin = FactoryGirl.create(:origin, :livingston, building: "not a perfect match")
+    @user.save
     @campus_match = FactoryGirl.create(:user)
     @campus_match.origin = FactoryGirl.create(:origin, :busch)
     @campus_match.destination = FactoryGirl.create(:destination, :livingston, building: "anywhere")
