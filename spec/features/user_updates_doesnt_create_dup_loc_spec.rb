@@ -14,14 +14,15 @@ feature "User updates their information" do
   end
 
   scenario "With the same Origin" do
-    #origin by default is livingston apartments, livingston
-    select "Livingston", from: "user_origin_attributes_campus"
+    select "Livingston", from: "user_origin_attributes_campus" #make origin the same
     select "Livingston Apartments", from: "user_origin_attributes_building"
-    select "Cook/Douglass", from: "user_destination_attributes_campus"
+    fill_in "Floor", with: "1"
+    select "Double - Apartment", from: "user_origin_attributes_style"
+    select "Cook/Douglass", from: "user_destination_attributes_campus" #make destination different
 
     expect{click_button "Update User"}.to_not change(Origin, :count)
     expect(page).to have_content("success")
-    expect(page).to have_content("Cook/Douglass") #destination was busch, this tests that the user was updated
+    expect(page).to have_content("Cook/Douglass") #destination was originally busch, this tests that the user was updated
   end
 end
 
