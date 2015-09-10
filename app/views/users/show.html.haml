@@ -24,7 +24,7 @@
         Wants to live in:
       %h4.list-group-item-text
         = @user.destination_summary
-    - unless @user.note.empty?
+    - unless @user.try(:empty?)
       %li.list-group-item
         %h4.list-group-item-heading
           Additional information about your living situation:
