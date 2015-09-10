@@ -3,8 +3,8 @@ require "rails_helper"
 feature "User updates their information" do
   before do
     @user = FactoryGirl.create(:user)
-    @user.origin = FactoryGirl.create(:origin)
-    @user.destination = FactoryGirl.create(:destination)
+    @user.origin = FactoryGirl.create(:origin, :livingston)
+    @user.destination = FactoryGirl.create(:destination, :busch)
     @user.save
     visit sign_in_path
     fill_in "Email", with: @user.email
