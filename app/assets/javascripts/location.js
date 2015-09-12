@@ -56,8 +56,11 @@ $(document).ready(function(){
       break;
     case "livingston":
       buildings = BUILDINGS_LIVINGSTON;
+      break;
+    case "anywhere":
+      $('#user_destination_attributes_building').hide();
   }
-  var newOptions = "<option value='anywhere'>Anywhere</option>";
+  var newOptions = "<option value='anywhere'>Any building</option>";
   for(i = 0; i < buildings.length; i++){
     newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
   }
@@ -68,17 +71,24 @@ $(document).ready(function(){
     switch(selected_building){
       case "busch":
         buildings = BUILDINGS_BUSCH;
+        $('#user_destination_attributes_building').fadeIn();
         break;
       case "college avenue":
         buildings = BUILDINGS_COLLEGE_AVENUE;
+        $('#user_destination_attributes_building').fadeIn();
         break;
       case "cook/douglass":
         buildings = BUILDINGS_COOK_DOUGLASS;
+        $('#user_destination_attributes_building').fadeIn();
         break;
       case "livingston":
         buildings = BUILDINGS_LIVINGSTON;
+        $('#user_destination_attributes_building').fadeIn();
+        break;
+      case "anywhere":
+        $('#user_destination_attributes_building').fadeOut();
     }
-    var newOptions = "<option value='anywhere'>Anywhere</option>";
+    var newOptions = "<option value='anywhere'>Any building</option>";
     for(i = 0; i < buildings.length; i++){
       newOptions += "<option value='" + buildings[i] + "'>" + buildings[i].toTitleCase() + "</option>";
     }

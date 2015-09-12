@@ -32,8 +32,8 @@
   %h3 Where do you want to live?
 
   = form.fields_for :destination do |destination|
-    = destination.collection_select :campus, Location::CAMPUSES, :to_s, :titleize
-    = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
+    = destination.collection_select :campus, Location::CAMPUSES_A, :to_s, :titleize, hide_label: true
+    = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize, hide_label: true
   %h5
     By signing up you agree with Swap Sniper's
     = link_to "Terms of Services", tos_path

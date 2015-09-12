@@ -109,4 +109,38 @@ feature "User goes to matches page" do
 
     should_not have_content(@different_gender.full_name_last_initial)
   end
+
+  scenario "User wants to live on any campus" do
+    @user.destination = FactoryGirl.create(:destination, :anycampus)
+    @user.save
+    @busch_match = FactoryGirl.create(:user)
+    @busch_match.origin = FactoryGirl.create(:origin, :busch)
+    @busch_match.destination = FactoryGirl.create(:destination, :livingston)
+    @busch_match.save
+    @cd_match = FactoryGirl.create(:user)
+    @cd_match.origin = FactoryGirl.create(:origin, :cookdouglass)
+    @cd_match.destination = FactoryGirl.create(:destination, :livingston)
+    @cd_match.save
+    @non_match = FactoryGirl.create(:user)
+    @non_match.origin = FactoryGirl.create(:origin, :busch)
+    @non_match.destination = FactoryGirl.create(:destination, :cookdouglass)
+    @non_match.save
+
+    visit root_path
+
+    should have_content(@busch_match.full_name_last_initial)
+    should have_content(@cd_match.full_name_last_initial)
+    should_not have_content(@non_match.full_name_last_initial)
+  end
+
+  scenario "User matches with a user who wants to live on any campus" do
+    @any_campus_match = FactoryGirl.create(:user)
+    @any_campus_match.origin = FactoryGirl.create(:origin, :busch)
+    @any_campus_match.destination = FactoryGirl.create(:destination, :anycampus)
+    @any_campus_match.save
+
+    visit root_path
+
+    should have_content(@any_campus_match.full_name_last_initial)
+  end
 end

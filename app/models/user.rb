@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
     #find users that live where i want to live
     #we have to pick all origins with this specific building and campus
     #this is because there are "duplicate" entries, because floor and room type makes the "same" locations "different"
-    if self.destination.building == "anywhere"
+    if self.destination.campus == "anywhere"
+      @where_i_want_to_live = Origin.all
+    elsif self.destination.building == "anywhere"
       @where_i_want_to_live = Origin.where(campus: self.destination.campus)
     else
       @where_i_want_to_live = Origin.where(campus: self.destination.campus, building: self.destination.building)
@@ -32,6 +34,8 @@ class User < ActiveRecord::Base
     @where_i_live = Destination.where(campus: self.origin.campus, building: self.origin.building)
     #also include any users that want to live on my campus, but "anywhere", which is stored as an explicit row
     @where_i_live = @where_i_live + Destination.where(campus: self.origin.campus, building: "anywhere")
+    #also include any users that want to live anywhere
+    @where_i_live = @where_i_live + Destination.where(campus: "anywhere")
     return if @where_i_live.nil?
     @migrators = []
     @where_i_live.each do |loc|
@@ -66,9 +70,9 @@ class User < ActiveRecord::Base
   end
 
   def destination_building_campus
-    if self.destination.campus.nil?
+    if self.destination.campus == "anywhere"
       @location = "Anywhere"
-    elsif self.destination.building.nil?
+    elsif self.destination.building == "anywhere"
       @location = self.destination.campus.titleize
     else
       @location = self.destination.building.titleize + ", " + self.destination.campus.titleize

@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   STYLES = ["Double - Dorm Room", "Single - Dorm Room", "Double - Apartment", "Single - Apartment", "Double - Suite", "Other"]
   CAMPUSES = ["livingston", "college avenue", "busch", "cook/douglass"]
+  CAMPUSES_A = ["anywhere", "livingston", "college avenue", "busch", "cook/douglass"]
 
   BUILDINGS_LIVINGSTON = ["livingston apartments", "lynton towers north", "lynton towers south", "quad 1", "quad 2", "quad 3"]
   BUILDINGS_BUSCH = ["allen hall", "barr hall", "best", "crosby suites", "davidson hall", "judson suites", "mattia hall", "mccormick suites", "metzger hall", "morrow suites", "nichols apartments", "richardson apartments", "silvers apartments", "thomas suites", "winkler suites", "marvin apartments", "buell apartments", "johnson apartments"]

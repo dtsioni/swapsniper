@@ -18,4 +18,9 @@ FactoryGirl.define do
     campus "cook/douglass"
     building "newell apartments"
   end
+
+  trait :anycampus do
+    campus "anywhere"
+    building "anywhere"
+  end
 end

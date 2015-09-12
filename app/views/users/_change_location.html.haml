@@ -2,7 +2,7 @@
   %h3 Where do you currently live?
 
   = form.fields_for :origin do |origin|
-    = origin.collection_select :campus, Location::CAMPUSES, :to_s, :titleize, selected: "livingston"
+    = origin.collection_select :campus, Location::CAMPUSES, :to_s, :titleize
     = origin.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
     = origin.number_field :floor, value: :empty
     = origin.collection_select :style, Location::STYLES, :to_s, :to_s
@@ -12,8 +12,8 @@
   %h3 Where do you want to live?
 
   = form.fields_for :destination do |destination|
-    = destination.collection_select :campus, Location::CAMPUSES, :to_s, :titleize, selected: "livingston"
-    = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize
+    = destination.collection_select :campus, Location::CAMPUSES_A, :to_s, :titleize, hide_label: true
+    = destination.collection_select :building, Location::BUILDINGS_LIVINGSTON, :to_s, :titleize, hide_label: true
 
   = form.submit
 
