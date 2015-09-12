@@ -65,4 +65,48 @@ feature "User goes to matches page" do
 
     should have_content(@match.full_name_last_initial)
   end
+
+  scenario "User picks their own origin as their destination" do
+    @user.destination = FactoryGirl.create(:destination, :livingston)
+    @user.save
+
+    visit root_path
+
+    should_not have_content(@user.full_name_last_initial)
+  end
+
+  scenario "User doesn't match with non matching users" do
+    #this user will match with their origin but not destination
+    @non_match_1 = FactoryGirl.create(:user)
+    @non_match_1.origin = FactoryGirl.create(:origin, :busch)
+    @non_match_1.destination = FactoryGirl.create(:destination, :cookdouglass)
+    @non_match_1.save
+    #this user will match with their destination but not origin
+    @non_match_2 = FactoryGirl.create(:user)
+    @non_match_2.origin = FactoryGirl.create(:origin, :cookdouglass)
+    @non_match_2.destination = FactoryGirl.create(:destination, :livingston)
+    @non_match_2.save
+    #this user won't match at all
+    @non_match_3 = FactoryGirl.create(:user)
+    @non_match_3.origin = FactoryGirl.create(:origin, :cookdouglass)
+    @non_match_3.destination = FactoryGirl.create(:destination, :cookdouglass)
+    @non_match_3.save
+
+    visit root_path
+
+    should_not have_content(@non_match_1.full_name_last_initial)
+    should_not have_content(@non_match_2.full_name_last_initial)
+    should_not have_content(@non_match_3.full_name_last_initial)
+  end
+
+  scenario "User doesn't match with different gender" do
+    @different_gender = FactoryGirl.create(:user, :female)
+    @different_gender.origin = FactoryGirl.create(:origin, :busch)
+    @different_gender.destination = FactoryGirl.create(:destination, :livingston)
+    @different_gender.save
+
+    visit root_path
+
+    should_not have_content(@different_gender.full_name_last_initial)
+  end
 end
