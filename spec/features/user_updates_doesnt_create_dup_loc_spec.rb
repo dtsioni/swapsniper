@@ -13,7 +13,7 @@ feature "User updates their information" do
     visit edit_user_path(@user)
   end
 
-  scenario "With the same Origin" do
+  scenario "Origin isn't duplicated when they update to the same Origin" do
     select "Livingston", from: "user_origin_attributes_campus" #make origin the same
     select "Livingston Apartments", from: "user_origin_attributes_building"
     fill_in "Floor", with: "1"
